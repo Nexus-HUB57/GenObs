@@ -1,6 +1,4 @@
 import { App, Plugin, PluginSettingTab, Setting, Notice, TFile } from 'obsidian';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 import { GenObsSettings, DEFAULT_SETTINGS } from './settings';
 import { OllamaClient } from './ollama';
 import { VectorStore } from './vector-store';
@@ -8,6 +6,8 @@ import { SemanticSearchModal } from './semantic-search-modal';
 import { CodeAnalyzer } from './code-analyzer';
 import { DevAgent } from './dev-agent';
 import { getEmbedding } from './embeddings';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
 const execAsync = promisify(exec);
 
