@@ -1,0 +1,17 @@
+{
+  "name": "genobs",
+  "version": "1.0.0",
+  "description": "GenObs - Agentic AI for Obsidian",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.17.0",
+    "esbuild": "^0.19.12",
+    "obsidian": "latest",
+    "typescript": "^5.5.0"
+  }
+}

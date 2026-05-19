@@ -1,0 +1,9 @@
+{
+  "id": "genobs",
+  "name": "GenObs - Agentic AI",
+  "version": "1.0.0",
+  "minAppVersion": "1.6.0",
+  "description": "Agente inteligente com Ollama (Llama 4), embeddings, daily notes e busca semântica.",
+  "author": "Nexus-HUB57 + Grok",
+  "isDesktopOnly": false
+}
