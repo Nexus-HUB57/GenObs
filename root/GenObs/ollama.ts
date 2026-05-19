@@ -1,36 +1,26 @@
-import { Notice } from 'obsidian';
-
-export interface OllamaConfig {
-    baseUrl: string;
-    model: string;
-    temperature: number;
-}
+import { requestUrl, Notice } from 'obsidian';
+import { GenObsSettings } from './settings';
 
 export class OllamaClient {
-    constructor(private config: OllamaConfig) {}
+    constructor(private settings: GenObsSettings) {}
 
-    async generate(prompt: string, systemPrompt?: string): Promise<string> {
+    async generateWithAI(prompt: string): Promise<string> {
         try {
-            const response = await fetch(`${this.config.baseUrl}/api/generate`, {
+            const response = await requestUrl({
+                url: `${this.settings.ollamaUrl}/api/generate`,
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    model: this.config.model,
+                    model: this.settings.model,
                     prompt: prompt,
-                    system: systemPrompt,
-                    temperature: this.config.temperature,
-                    stream: false
-                })
+                    stream: false,
+                    temperature: this.settings.temperature
+                }),
+                headers: { 'Content-Type': 'application/json' }
             });
-
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-            const data = await response.json();
-            return data.response || "Sem resposta do modelo.";
-        } catch (error) {
-            console.error(error);
-            new Notice("❌ Ollama não está respondendo. Verifique se está rodando.");
-            return "*Erro ao conectar com Ollama*";
+            return response.json.response;
+        } catch (e) {
+            new Notice(`Erro Ollama: ${e.message}`);
+            return "Erro ao conectar com Ollama.";
         }
     }
 }

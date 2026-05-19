@@ -1,0 +1,9 @@
+{
+  "id": "genobs",
+  "name": "GenObs - AI Dev Agent",
+  "version": "1.0.0",
+  "minAppVersion": "1.4.0",
+  "description": "Agente de IA fullstack: busca semântica, geração de código (Python, Java, C++, fullstack, data), CLI e muito mais.",
+  "author": "Nexus-HUB57",
+  "isDesktopOnly": false
+}
