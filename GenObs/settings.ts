@@ -31,8 +31,8 @@ export class GenObsSettingTab extends PluginSettingTab {
         containerEl.createEl('h2', { text: 'GenObs - Configurações' });
 
         new Setting(containerEl)
-            .setName('Ollama URL')
-            .setDesc('Endereço do Ollama')
+            .setName('Ollama Base URL')
+            .setDesc('URL do servidor Ollama')
             .addText(text => text
                 .setPlaceholder('http://localhost:11434')
                 .setValue(this.plugin.settings.ollamaBaseUrl)
@@ -43,7 +43,7 @@ export class GenObsSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Modelo Ollama')
-            .setDesc('Ex: llama3.2, llama4:maverick, etc.')
+            .setDesc('Ex: llama3.2, llama4:maverick')
             .addText(text => text
                 .setValue(this.plugin.settings.ollamaModel)
                 .onChange(async (value) => {
@@ -53,7 +53,6 @@ export class GenObsSettingTab extends PluginSettingTab {
 
         new Setting(containerEl)
             .setName('Temperature')
-            .setDesc('0.0 = mais preciso, 1.0 = mais criativo')
             .addSlider(slider => slider
                 .setLimits(0, 1, 0.05)
                 .setValue(this.plugin.settings.temperature)
@@ -63,7 +62,7 @@ export class GenObsSettingTab extends PluginSettingTab {
                 }));
 
         new Setting(containerEl)
-            .setName('Auto Embeddings ao salvar')
+            .setName('Auto Embeddings ao salvar nota')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.autoEmbedOnSave)
                 .onChange(async (value) => {

@@ -1,7 +1,7 @@
 {
   "name": "genobs",
   "version": "1.0.0",
-  "description": "GenObs - Agentic AI for Obsidian",
+  "description": "GenObs Agentic AI Plugin for Obsidian",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
