@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-abstract",
+      "description": "Abstract technical network",
+      "imageUrl": "https://picsum.photos/seed/nexus1/1200/800",
+      "imageHint": "network digital"
+    }
+  ]
+}

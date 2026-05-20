@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 250 16% 5%;
+    --foreground: 0 0% 98%;
+    --card: 250 16% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 250 16% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 258 89% 66%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 250 16% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 250 16% 15%;
+    --muted-foreground: 250 5% 65%;
+    --accent: 193 100% 72%;
+    --accent-foreground: 250 16% 5%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 250 16% 18%;
+    --input: 250 16% 18%;
+    --ring: 258 89% 66%;
+    --chart-1: 258 89% 66%;
+    --chart-2: 193 100% 72%;
+    --chart-3: 280 65% 60%;
+    --chart-4: 340 75% 55%;
+    --chart-5: 160 60% 45%;
+    --radius: 0.75rem;
+    --sidebar-background: 250 16% 3%;
+    --sidebar-foreground: 250 5% 85%;
+    --sidebar-primary: 258 89% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 250 16% 12%;
+    --sidebar-accent-foreground: 193 100% 72%;
+    --sidebar-border: 250 16% 10%;
+    --sidebar-ring: 258 89% 66%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased selection:bg-primary/30 selection:text-accent;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline tracking-tight;
+  }
+}
+
+.glass-panel {
+  @apply bg-card/40 backdrop-blur-md border border-white/5 shadow-xl;
+}
+
+.code-font {
+  @apply font-code text-sm leading-relaxed;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/20 rounded-full hover:bg-muted-foreground/40;
+}
