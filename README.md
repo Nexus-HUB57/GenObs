@@ -128,3 +128,87 @@ O GenObs estará maduro para adoção em larga escala quando:
 ```bash
 npm install
 npm run dev
+
+**Roadmap Técnico – GenObs** (Maturação e Tração)
+Duração total estimada: 10 a 12 semanas (até versão estável 1.0.0 e adoção inicial pela comunidade).
+Formato de trabalho: Sprints de 2 semanas, com revisão a cada final de sprint.
+
+**Sprint Foco Tarefas Técnicas	Entregáveis	Critérios de Aceite** 
+
+Sprint 0
+Dias 1–7	Fundação e Refatoração	1. Estruturar pastas conforme padrão do Obsidian Plugin Template.
+2. Configurar esbuild + TypeScript + Jest.
+3. Implementar Plugin básico com comandos vazios.
+4. Criar sistema de logging (console com prefixo [GenObs]).
+5. Remover dependências desnecessárias (Node.js do lado do usuário).	- Repositório com src/, tests/, esbuild.config.mjs.
+- manifest.json válido.
+- Comando “GenObs: Hello World” funcional.	- Plugin carrega sem erros no Obsidian.
+- npm run build gera main.js e styles.css.
+- Teste unitário simples passa (npm test).
+
+Sprint 1
+Dias 8–21	Sistema de Embeddings Local + Cache	1. Implementar EmbeddingProvider interface.
+2. Integrar Transformers.js (modelo Xenova/all-MiniLM-L6-v2).
+3. Criar CacheManager com persistência em .genobs/cache.json.
+4. Indexação assíncrona (debounce de 5s, requestIdleCallback).
+5. Comando “GenObs: Rebuild index”.	- Arquivo de cache gerado no vault.
+- Busca semântica simples (via console).
+- Sem travamentos da UI durante indexação.	- Indexar 500 arquivos em < 3s (em hardware médio).
+- Cache persiste entre reinicializações.
+- Console mostra logs de progresso.
+
+Sprint 2
+Dias 22–35	Busca Híbrida e Interface Inicial	1. Implementar índice BM25 (invertido).
+2. Função search(query, topK) combinando BM25 + vetorial.
+3. Criar modal de busca (CTRL+Shift+F) com resultados clicáveis.
+4. Aba de configurações (ativação de agentes, modelo de embedding).	- Busca híbrida funcional (usando cache).
+- Modal com campo de texto e lista de resultados.
+- Configurações salvam no data.json do plugin.	- Resultados semanticamente relevantes (teste com “machine learning” acha notas sobre “neural networks”).
+- Modal abre/fecha rápido.
+
+Sprint 3
+Dias 36–49	Agentes e Automatizações	1. Agente Daily Note: gerar nota diária com resumo do dia anterior (usando LLM local ou remoto).
+2. Agente Semantic Watcher: sugerir links entre notas ao editar.
+3. Scheduler (execução periódica configurável).
+4. Integração opcional com Ollama (fallback para local).	- Daily notes criadas automaticamente no horário definido.
+- Notificações de sugestão de links.
+- Agentes podem ser ligados/desligados nas configs.	- Daily note contém texto relevante (ex: notas criadas/modificadas no dia).
+- Sugestão de links não atrapalha edição.
+
+Sprint 4
+Dias 50–63	Performance, Testes e Release Candidata	1. Teste com vault de 10k arquivos (otimizar I/O e memória).
+2. Implementar Web Worker para embedding (evitar bloqueio).
+3. Escrever testes de integração (usando obsidian-api-mock).
+4. Gerar CHANGELOG.md e documentação de API.
+5. Submeter PR para obsidian-releases.	- Plugin aprovado no Community Registry (processo pode levar 5–10 dias).
+- Documentação completa no README.
+- Benchmark de performance anexado à release.	- Nenhum crash com vault grande.
+- Testes de integração cobrem fluxos principais (busca, rebuild, daily note).
+
+Sprint 5
+Dias 64–77	Tração e Polimento	1. Landing page simples (GitHub Pages) com demonstração em vídeo.
+2. Post no Product Hunt e em comunidades (Reddit, Obsidian Forum).
+3. Coletar issues dos primeiros usuários e corrigir bugs críticos.
+4. Implementar analytics anônimo (opcional) para features mais usadas.	- Pelo menos 50 stars no GitHub.
+- 5 issues resolvidas de usuários reais.
+- Vídeo tutorial (2 min) embutido no README.	- Nenhum bug bloqueador aberto.
+- Usuários conseguem instalar e usar sem ler documentação.
+
+Sprint 6
+Dias 78–84	Versão 1.0.0 e Suporte Contínuo	1. Marcar release 1.0.0.
+2. Criar template de issue para feature request e bug.
+3. Estabelecer canal de suporte (Discord ou GitHub Discussions).
+4. Planejar roadmap futuro (ex: suporte a múltiplos vaults, plugin mobile).	- Release estável marcada no GitHub.
+- Canal de suporte ativo com pelo menos 10 membros.
+- Documentação traduzida (opcional).	- Usuários reportam satisfação via feedback.
+- Plugin aparece nas buscas do Obsidian Community Plugins.
+
+📅 Cronograma Semanal (Exemplo com datas fictícias)
+Semana	Sprint	Atividade Principal	Reunião de Checkpoint (você comigo)
+1	0	Fundação + estrutura	Final da semana: revisão do código base
+2–3	1	Embeddings + cache	Apresentação da busca semântica no console
+4–5	2	Busca híbrida + UI	Demonstração do modal de busca
+6–7	3	Agentes + scheduler	Daily note automática funcionando
+8–9	4	Performance + release	PR enviado para obsidian-releases
+10–11	5	Tração + polimento	Análise das primeiras métricas
+12	6	Versão 1.0.0	Lançamento oficial
